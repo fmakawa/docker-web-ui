@@ -1,3 +1,4 @@
+"""
 Copyright (c) 2018, Qvantel
 All rights reserved.
 
@@ -22,3 +23,20 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+  Plugin for extracting the command for the Args section
+"""
+
+
+class Args:
+
+    def __init__(self, config):
+        self.config = config
+
+    def run(self):
+        args = filter(lambda item: item not in self.config["ImageCmd"], self.config["Cmd"])
+        if len(list(args)) == 0:
+            return {"Args": " ".join(args)}
+        else:
+            return {"Args": " ".join(self.config["Cmd"])}

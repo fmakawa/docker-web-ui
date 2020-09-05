@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <h2 class="text-center" style="padding:10px; text-transform: capitalize">{{ stopped_config["Name"].replace("/", "", 1) }}</h2>
+        <div class="col" style="padding-bottom:20px; text-align:center">
+            <p> You have stopped the container <b> {{ stopped_config["Name"].replace("/", "", 1) }} </b>with id: <b>{{ stopped_config["Id"] }}</b>.</p>
+        </div>
+    </div>
+    <hr>
+{% include "after_commands/after_index.html" %}
+{% endblock %}

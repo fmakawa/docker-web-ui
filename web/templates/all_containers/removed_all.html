@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {% if database | length != 0 %}
+    <h2 class="text-center" style="padding:10px; text-transform: capitalize">Removed Containers - Database</h2>
+    <p style="color:red; text-align:center">{{ msg }}</p>
+    <div class="col" style="padding-bottom:20px">
+        <table class="table-striped table-bordered" style="width:95%">
+            <tr>
+                <th style="padding:10px; min-width:20rem">Name</th>
+                <th style="padding:10px">Command</th>
+                <th style="padding:10px">Date</th>
+            </tr>
+            {% for container in database %}
+            <tr>
+                <td style="padding:10px">{{ container[1] }}</td>
+                <td style="padding:10px">{{ container[2] }}</td>
+                <td style="padding:10px">{{ container[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+    <h2 class="text-center" style="padding:30px 10px; height: 30rem; line-height:30rem; text-align:center "><b>There are currently no records to collect</b></h2>
+    {% endif %}
+</div>
+{% endblock %}

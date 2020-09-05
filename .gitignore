@@ -1,0 +1,10 @@
+.DS_Store
+*.pyc
+.idea
+__pycache__/
+lib/
+bin/
+include/
+.Python
+pip-selfcheck.json
+*.db

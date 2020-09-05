@@ -1,0 +1,2 @@
+FLASK_APP=docker-web-ui.py
+DOCKER_WEB_HOME="$PWD"

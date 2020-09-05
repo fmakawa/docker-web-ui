@@ -1,0 +1,34 @@
+.button-full {
+    width: 100%;
+}
+
+/*
+head {
+background: rgb(43,97,81);
+background: linear-gradient(0deg, rgba(43,97,81,1) 19%, rgba(20,12,97,1) 47%, rgba(30,18,130,1) 91%);
+}
+*/
+head {
+background: rgb(7,98,152);
+background: linear-gradient(135deg, rgba(7,98,152,1) 0%, rgba(0,212,255,1) 21%, rgba(7,93,150,1) 70%, rgba(9,9,121,1) 95%, rgba(2,0,36,1) 100%);
+}
+
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+
+#header {
+background: linear-gradient(10deg, #a1d9b4 20%, #32988a 40%, #000e3c 70%);
+}
+
+#header #title {
+color:white;
+font-weight: bold;
+text-align: center!important;
+width:70%;
+font-size: x-large;
+padding-left: 0.5rem
+}
