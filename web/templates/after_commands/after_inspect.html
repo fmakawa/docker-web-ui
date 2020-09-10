@@ -3,8 +3,8 @@
 {% block content %}
 <div>
     <h2 class="text-center" style="padding:10px; text-transform: capitalize">{{ inspect["Name"].replace("/", "", 1) }}</h2>
-    <a href="/index"><button type="button" class="btn btn-success">Return</button></a>
-    <div class="col" style="padding-bottom:20px">
+    <a href="/index"><button type="button" class="btn btn-success" style="margin: 0px 20px 0px 20px;">Return</button></a>
+    <div class="col" style="padding-bottom:20px; margin: 0px 20px 0px 20px;">
         <pre id ="container-inspect">{{ inspect_data }}</pre>
     </div>
     <script src="/static/js/prettifyjson.js"></script>

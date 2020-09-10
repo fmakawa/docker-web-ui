@@ -15,7 +15,7 @@
             <td style="padding:10px">
                 <table>
                     <tr>
-                        <td><a class="show-inspect" href=# data-name="{{ container['Name'] }}" data-url="/inspect/{{ container['Id'] }}"><button id="inspect" type="button" class="button-full btn btn-primary">Inspect</button></a></td>
+                        <td><a href="/inspect/{{ container['Id'] }}"><button type="button" class="button-full btn btn-primary">Inspect</button></a></td>
                         <td><a class="show-pause" href=# data-name="{{ container['Name'] }}" data-url="/pause/{{ container['Id'] }}"><button type="button" class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
                     </tr>
                     <tr>

@@ -34,6 +34,7 @@ def container_detail():
     restarting_con = []
     stopped_con = []
     paused_con = []
+    web_con = []
     for ids in container_id:
         drolex = Drolex(conn_uri='unix://var/run/docker.sock',
                         loglevel='INFO')
@@ -54,11 +55,14 @@ def container_detail():
             "Command": command,
             "Auto Remove": config["HostConfig"]["AutoRemove"],
             "Status": status,
-            "Id": config["Id"]
+            "Id": config["Id"],
+            "Image": config["Config"]["Image"]
             }
         # print(json)
         # print("State: " + config["State"]["Status"])
-        if config["State"]["Status"] == "running":
+        if "docker-web" in config["Config"]["Image"]:
+            web_con.append(json_con)
+        elif config["State"]["Status"] == "running":
             running_con.append(json_con)
         elif config["State"]["Status"] == "restarting":
             restarting_con.append(json_con)
@@ -77,7 +81,7 @@ def container_detail():
     # print("other: \n" + str(data))
     states = ["running", "restarting", "stopped", "paused", "data"]
 
-    return paused_con, data, running_con, restarting_con, stopped_con, states
+    return paused_con, data, running_con, restarting_con, stopped_con, states, web_con
 
 
 @app.route('/')
@@ -105,6 +109,7 @@ def index():
         restarting=params[3],
         stopped=params[4],
         states=params[5],
+        dockerweb = params[6],
         removed_containers=removed_containers
     )
 

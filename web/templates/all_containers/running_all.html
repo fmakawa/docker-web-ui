@@ -19,11 +19,11 @@
                 <table>
                     <tr>
                         <td><a href="/inspect/{{ container['Id'] }}"><button type="button" class="button-full btn btn-primary">Inspect</button></a></td>
-                        <td><a href="/pause/{{ container['Id'] }}"><button type="button" class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
+                        <td><a class="show-pause" href=# data-name="{{ container['Name'] }}" data-url="/pause/{{ container['Id'] }}"><button type="button" class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
                     </tr>
                     <tr>
-                        <td><a href="/stop/{{ container['Id'] }}"><button type="button" class="button-full btn btn-warning">Stop</button></a></td>
-                        <td><a href="/remove/{{ container['Id'] }}"><button type="button" class="button-full btn btn-danger">Remove</button></a></td>
+                        <td><a class="show-stop" href=# data-name="{{ container['Name'] }}" data-url="/stop/{{ container['Id'] }}"><button type="button" class="button-full btn btn-warning">Stop</button></a></td>
+                        <td><a class="show-remove" href=# data-name="{{ container['Name'] }}" data-url="/remove/{{ container['Id'] }}"><button type="button" class="button-full btn btn-danger">Remove</button></a></td>
                     </tr>
                 </table>
             </td>

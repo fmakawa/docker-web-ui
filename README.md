@@ -16,10 +16,16 @@ To run after dependencies have been installed:
 
 ## Running with docker (recommended)
 
-To run with docker as a container:
+To run with docker as a container WITHOUT persistant database memory:
 
 ```shell
 docker run -p 3675:5000 --rm -v /var/run/docker.sock:/var/run/docker.sock -d --name docker-web docker-web:latest 
+```
+
+To run with docker as a container WITH persistant database memory:
+
+```shell
+docker run -p 3675:5000 --rm -v /var/run/docker.sock:/var/run/docker.sock -v <folder-you-want-the database-in>:/opt/docker_web/database -d --name docker-web docker-web:latest 
 ```
 
 localhost:3675
@@ -35,7 +41,18 @@ I've changed the name from drolex to docker-web-ui is this is no longer just a r
 I will continue development of this to allow full docker analysis as a docker UI and management and systems analysis tool. I would also like to add permissions (read only vs write) and depending on which permissions limit interaction with the app. Additionally I want to add a limitation on the remove option.
 
 ## Features
+ 
+Landing page will all containers in their various states. You can stop, restart, pause, unpause, and remove containers.
+![The landing page](/docs/images/index.png)
 
+Inspect containers with colour coded display.
+![The inspect of a container](/docs/images/inspect.png)
+
+A database of all removed containers. Container removed that are shown MUST have been removed from this UI application. If removed used using the docker cli they will not be shown.
+![A list of the removed containers from this UI](/docs/images/removed.png)
+
+The docker container is this app is shown at the bottom of the landing page. You can only inspect it. It cannot be manipulated i.e. paused, unpause, stopped, restarted and removed
+![The Docker Web container in the UI](/docs/images/docker_container.png)
 
 ## Roadmap (Not in order of importance or implementation date)
 - (Immediately) add logic to prevent removal of the docker-web-ui container. It will still be shown as it is part of the systems management data set. 
