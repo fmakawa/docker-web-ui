@@ -3,7 +3,7 @@
 A Docker UI to manage containers in a Web interface.
 ## Running with Source
 
-To run from source, the following command can be used to install the app's dependencies:
+To run from source, you MUST be root user to be able to access the docker daemon and the following command can be used to install the app's dependencies:
 
 ```shell
 pip install -r requirements.txt
@@ -55,7 +55,6 @@ The docker container is this app is shown at the bottom of the landing page. You
 ![The Docker Web container in the UI](/docs/images/docker_container.png)
 
 ## Roadmap (Not in order of importance or implementation date)
-- (Immediately) add logic to prevent removal of the docker-web-ui container. It will still be shown as it is part of the systems management data set. 
 - adjust error handling pages 
 - container CPU usage and performance metrics and graphs
 - backwards compatability with older versions of docker

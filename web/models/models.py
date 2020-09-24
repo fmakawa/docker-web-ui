@@ -94,7 +94,7 @@ class Drolex:
             raise DrolexException("Unable to instance the DockerClient: {0}".format(e))
 
     '''
-        Get the configuration dictionary from an specific container name or ID
+        Get the configuration dictionary from a specific container name or ID
         INPUT:
             str - Container ID or Name
         OUTPUT:
@@ -164,7 +164,7 @@ class Drolex:
         return result
 
     '''
-      Dinamically get the content of a docker config output and look in the utils available to
+      Dynamically get the content of a docker config output and look in the utils available to
       proccess every key to generate the desired command line
       If no util/KEY is available write in debug but not in error a message
       INPUT:

@@ -1,5 +1,6 @@
 docker==4.1.0
 flask==1.1.1
+psutil==5.7.2
 #gunicorn==20.0.4
 #gevent==1.4.0
 #requests==2.22.0

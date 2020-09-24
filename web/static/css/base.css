@@ -13,7 +13,14 @@ background: rgb(7,98,152);
 background: linear-gradient(135deg, rgba(7,98,152,1) 0%, rgba(0,212,255,1) 21%, rgba(7,93,150,1) 70%, rgba(9,9,121,1) 95%, rgba(2,0,36,1) 100%);
 }
 
-pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+pre {
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    margin: 10px; 
+    width:100%; 
+    display: inline-block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;}
 .string { color: green; }
 .number { color: darkorange; }
 .boolean { color: blue; }
@@ -31,4 +38,12 @@ text-align: center!important;
 width:70%;
 font-size: x-large;
 padding-left: 0.5rem
+}
+
+.emphatic-box {
+    word-wrap: break-word; 
+    width: 95%; 
+    display:inline-block; 
+    white-space: pre-wrap;
+    border: 1px solid #ccc;
 }

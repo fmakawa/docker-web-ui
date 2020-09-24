@@ -5,7 +5,7 @@
     {% if stopped| length!=0 %}
     <h2 class="text-center" style="padding:10px; text-transform: capitalize">Stopped</h2>
     <div class="col" style="padding-bottom:20px">
-    <table class="table-striped table-bordered" style="width:95%">
+    <table class="table-striped table-bordered">
         <tr>
             <th style="padding:10px">Name</th><th style="padding:10px">Run Command</th><th style="padding:10px">AutoRemove</th><th style="padding:10px">Up Time</th><th style="padding:10px">Actions</th>
         </tr>
@@ -18,11 +18,11 @@
             <td style="padding:10px">
                 <table>
                     <tr>
-                        <td><a href="/inspect/{{ container['Id'] }}"><button type="button" class="button-full btn btn-primary">Inspect</button></a></td>
-                        <td><a class="show-restart" href=# data-name="{{ container['Name'] }}" data-url="/restart/{{ container['Id'] }}"><button type="button" class="button-full btn btn-success">Restart</button></a></td>
+                        <td><a href="/containers/inspect/{{ container['Id'] }}"><button type="button" class="button-full btn btn-primary">Inspect</button></a></td>
+                        <td><a class="show-restart" href=# data-name="{{ container['Name'] }}" data-url="/containers/restart/{{ container['Id'] }}"><button type="button" class="button-full btn btn-success">Restart</button></a></td>
                     </tr>
                     <tr>
-                        <td><a class="show-remove" href=# data-name="{{ container['Name'] }}" data-url="/remove/{{ container['Id'] }}"><button type="button" class="button-full btn btn-danger">Remove</button></a></td>
+                        <td><a class="show-remove" href=# data-name="{{ container['Name'] }}" data-url="/containers/remove/{{ container['Id'] }}"><button type="button" class="button-full btn btn-danger">Remove</button></a></td>
                         <td></td>
                     </tr>
                 </table>

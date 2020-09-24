@@ -1,0 +1,436 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Docker Web UI</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/img/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/img/16x16.png">
+  <!-- svg width="168" height="53" xmlns="http://www.w3.org/2000/svg"></1--svg -->
+  <!-- CSS only -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/menu_sidebar.css">
+  <link rel="stylesheet" href="/static/css/pretty-print-json.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="/static/js/pretty-print-json.js"></script>
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="/static/js/jquery-3.5.1.min.js"></script>
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script-->
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/bootbox.min.js"></script>
+  <script src="/static/js/menu.js"></script>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Bootstrap NavBar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top"
+    style="background: linear-gradient(10deg, rgba(0,212,255,1) 20%, rgba(7,93,150,1) 50%, rgba(9,9,121,1) 85%, rgba(2,0,36,1) 100%)">
+    <div>
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
+        <img src="/static/img/logo-pastel-shadows.png" style="max-width:20rem" alt="">
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Toggle navigation" style="border: 1px solid rgba(255, 255, 255, 0.6)">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse topmenu" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        {% if section=='overview' %}
+        {% elif section=='system'%}
+        {% elif section=='containers'%}
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/all">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/running">Running</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/paused">Paused</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/stopped">Stopped</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/removed">Removed</a>
+        </li>
+        {% elif section=='network'%}
+        {% elif section=='volumes'%}
+        {% elif section=='swarm'%}
+        {% elif section=='images'%}
+        {% elif section=='config'%}
+        {% endif %}
+
+        <!-- This menu is hidden in bigger devices with d-sm-none. 
+         The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+        <li class="nav-item dropdown d-sm-block d-md-none">
+          <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+            <a class="dropdown-item" href="#">Overview</a>
+            <a class="dropdown-item" href="#">System</a>
+            <a class="dropdown-item" href="#">Containers</a>
+            <a class="dropdown-item" href="#">Network</a>
+            <a class="dropdown-item" href="#">Volumes</a>
+            <a class="dropdown-item" href="#">Swarm</a>
+            <a class="dropdown-item" href="#">Images</a>
+            <a class="dropdown-item" href="#">Config</a>
+            <a class="dropdown-item disabled" href="#">Help</a>
+          </div>
+        </li>
+        <!-- Smaller devices menu END -->
+      </ul>
+      {% if section =='containers' %}
+      <form class="form-inline my-2 my-md-0">
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      </form>
+      {% endif %}
+    </div>
+  </nav>
+  <!-- NavBar END -->
+  <!-- Secondary Inspect Menu starts-->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <!-- button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsInspect" aria-controls="navbarsInspect" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button -->
+
+    <div class="collapse navbar-collapse" id="navbarsInspect">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link disabled inactive" href="#">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disable inactive" href="#">System</a>
+        </li>
+        <!-- li class="nav-item">
+          <a class="nav-link disabled inactive" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"><span class="fa fa-server fa-fw mr-3"></span>Containers</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
+              action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
+              here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" tabindex="-1"
+            aria-disabled="true">Network</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
+              action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
+              here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Volumes</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
+              action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
+              here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Swarm</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
+              action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
+              here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Images</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
+              action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
+              here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Config</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
+              action</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
+              here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled inactive" href="#">Help</a>
+        </li>
+        <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start text-white">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-users fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Swarm</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu4" class="collapse sidebar-submenu">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 1</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 2</span>
+          </a>
+        </div>
+      </ul>
+      <form class="form-inline my-2 my-md-0">
+        <input class="form-control" type="text" placeholder="Search">
+      </form>
+    </div>
+  </nav>
+  <!-- Inspect Menu ends-->
+
+
+  <!-- Bootstrap row -->
+  <div class="row" id="body-row">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+      <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+      <!-- Bootstrap List Group -->
+      <ul class="list-group sticky-top sticky-offset">
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+          <small>MAIN MENU</small>
+        </li>
+        <!-- /END Separator -->
+        <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-pie-chart fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Overview</span>
+          </div>
+        </a>
+        <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-dashboard fa-fw mr-3"></span>
+            <span class="menu-collapsed ">System</span>
+          </div>
+        </a>
+        <!-- Menu with submenu -->
+        <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-server fa-fw mr-3"></span>
+            <span class="menu-collapsed">Containers</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu1" class="collapse sidebar-submenu">
+          <a href="/containers/all" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">All</span>
+          </a>
+          <a href="/containers/running" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Running</span>
+          </a>
+          <a href="/containers/paused" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Paused</span>
+          </a>
+          <a href="/containers/stopped" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Stopped</span>
+          </a>
+          <a href="/containers/removed" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Removed</span>
+          </a>
+        </div>
+        <!-- Menu with submenu -->
+        <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-signal fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Network</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu2" class="collapse sidebar-submenu">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 1</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 2</span>
+          </a>
+        </div>
+
+        <!-- Menu with submenu -->
+        <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-database fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Volumes</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu3" class="collapse sidebar-submenu">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 1</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 2</span>
+          </a>
+        </div>
+        <!-- Menu with submenu -->
+        <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-users fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Swarm</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu4" class="collapse sidebar-submenu">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 1</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 2</span>
+          </a>
+        </div>
+        <!-- Menu with submenu -->
+        <a href="#submenu5" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-download fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Images</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu5" class="collapse sidebar-submenu">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 1</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 2</span>
+          </a>
+        </div>
+        <!-- Menu with submenu -->
+        <a href="#submenu6" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-cog fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Config</span>
+            <span class="submenu-icon ml-auto"></span>
+          </div>
+        </a>
+        <!-- Submenu content -->
+        <div id="submenu6" class="collapse sidebar-submenu">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 1</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed ">Placeholder 2</span>
+          </a>
+        </div>
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+          <small>OPTIONS</small>
+        </li>
+        <!-- /END Separator 
+        <a href="#" class="bg-dark list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-calendar fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Calendar</span>
+          </div>
+        </a>
+        < Separator without title 
+        <li class="list-group-item sidebar-separator menu-collapsed"></li>
+        <-- /END Separator -->
+        <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-question fa-fw mr-3"></span>
+            <span class="menu-collapsed ">Help</span>
+          </div>
+        </a>
+        <a href="#" data-toggle="sidebar-colapse"
+          class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+            <span id="collapse-text" class="menu-collapsed">Collapse</span>
+          </div>
+        </a>
+        <!-- Logo -->
+        <li class="list-group-item logo-separator d-flex justify-content-center">
+          <img src="/static/img/logo-favicon.png" width="30" height="30">
+        </li>
+      </ul>
+      <!-- List Group END-->
+    </div>
+    <!-- sidebar-container END -->
+
+    <!-- MAIN -->
+    <div class="col py-3">
+      {% block content%}{% endblock %}
+    </div>
+    <!-- Main Col END -->
+
+  </div>
+  <!-- body-row END -->
+  <script src="/static/js/popup_confirmations.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      // this will get the full URL at the address bar
+      var url = window.location.href;
+      // console.log(url);
+
+      // passes on every "a" tag
+      $(".topmenu a").each(function () {
+        //var full_url = '127.0.0.1:5000'.concat(this.href);
+        //console.log(this.href);
+        //console.log(full_url);
+        // checks if its the same on the address bar
+        if (url == (this.href)) {
+          $(this).closest("li").addClass("active");
+          //for making parent of submenu active
+          $(this).closest("li").parent().parent().addClass("active");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

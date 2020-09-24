@@ -1,21 +1,71 @@
-<nav id="header" class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(10deg, rgba(0,212,255,1) 20%, rgba(7,93,150,1) 50%, rgba(9,9,121,1) 85%, rgba(2,0,36,1) 100%)">
-<div>
-    <a class="navbar-brand" href="/">
-        <img src="/static/img/logo.png" style="max-width:20rem">
-    </a>
-</div>
-<div>
-    <a id="title" class="navbar-brand" href="/">Docker Web UI</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="/running">Running</a></li>
-            <li class="nav-item"><a class="nav-link" href="/paused">Paused</a></li>
-            <li class="nav-item"><a class="nav-link" href="/stopped">Stopped</a></li>
-            <li class="nav-item"><a class="nav-link" href="/removed">Removed</a></li>
-        </ul>
+{% block header %}
+  <!-- Bootstrap NavBar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top"
+    style="background: linear-gradient(10deg, rgba(0,212,255,1) 20%, rgba(7,93,150,1) 50%, rgba(9,9,121,1) 85%, rgba(2,0,36,1) 100%)">
+    <div>
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
+        <img src="/static/img/logo-pastel-shadows.png" style="max-width:20rem" alt="">
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Toggle navigation" style="border: 1px solid rgba(255, 255, 255, 0.6)">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
-</div>
-</nav>
+    <div class="collapse navbar-collapse topmenu" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        {% if section=='overview' %}
+        {% elif section=='system'%}
+        {% elif section=='containers'%}
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/all">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/running">Running</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/paused">Paused</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/stopped">Stopped</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/containers/removed">Removed</a>
+        </li>
+        {% elif section=='network'%}
+        {% elif section=='volumes'%}
+        {% elif section=='swarm'%}
+        {% elif section=='images'%}
+        {% elif section=='config'%}
+        {% endif %}
+
+        <!-- This menu is hidden in bigger devices with d-sm-none. 
+         The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+        <li class="nav-item dropdown d-sm-block d-md-none">
+          <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+            <a class="dropdown-item" href="#">Overview</a>
+            <!--a class="dropdown-item" href="#">System</a-->
+            <a class="dropdown-item" href="#">Containers</a>
+            <!--a class="dropdown-item" href="#">Network</a-->
+            <!--a class="dropdown-item" href="#">Volumes</a-->
+            <!--a class="dropdown-item" href="#">Swarm</a-->
+            <!--a class="dropdown-item" href="#">Images</a-->
+            <!--a class="dropdown-item" href="#">Config</a-->
+            <a class="dropdown-item" href="/help">Help</a>
+          </div>
+        </li>
+        <!-- Smaller devices menu END -->
+      </ul>
+      {% if section =='containers' %}
+      <form class="form-inline my-2 my-md-0">
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      </form>  
+      {% endif %}
+    </div>
+  </nav>
+  <!-- NavBar END -->
+{% endblock %}

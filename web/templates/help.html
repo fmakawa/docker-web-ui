@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div>
+        <h3>version: 0.3.0</h3>
+        <br>
+        <h2>FAQ:</h2>
+        <hr>
+        <br>
+        <p><strong>Can I make my own run command and run it in the UI?</strong></p>
+        <p>No. We feel that the CLI is best for this and are currently not looking into enabling this feature</p>
+        <p><strong>Can we rerun deleted containers?</strong></p>
+        <p>No, once deleted you must run them through the CLI.</p>
+        <p class="emphatic-box" style="color:red">
+            <strong><i>     It should be noted that all functions to create new containers, images, configs, volumes, networks .etc have not been enabled. You can only
+                manipulate already existing assets. All creation should be done via the CLI 
+            </i></strong></p>
+        <p><strong></strong></p>
+        <p></p>
+        <p><strong></strong></p>
+        <p></p>
+    </div>
+    <div>
+        <h2>Documentation</h2>
+        <hr>
+        <p><strong>Docker-Web-UI</strong></p>
+        <p><i>README</i></p>
+        <p><a href="https://github.com/fmakawa/docker-web-ui/blob/master/README.md">https://github.com/fmakawa/docker-web-ui/blob/master/README.md</a></p>
+        <p><i>CHANGELOG</i></p>
+        <p>A complete record can be found here: <br>
+            <a href="https://github.com/fmakawa/docker-web-ui/blob/master/CHANGELOG.md ">https://github.com/fmakawa/docker-web-ui/blob/master/CHANGELOG.md</a><br>
+
+            Below are the most 3 recent pushes.
+            <span class="emphatic-box">
+                ## [0.2.2] - 2020-09-19
+    
+                ## [Unreleased]
+    
+                - container CPU usage and performance metrics and graphs
+                - backwards compatability with older versions of docker
+    
+                ### Added
+                - [BIG CHANGE] Changed URLS for container related to include 'containers' in the url i.e '/containers/running'. This is 
+                - Fixed known issue regarding hardcoded database path. Changed the database directory mapping to ensure that its not hardcoded and can be
+                  easily preserved through mounting volumes for data continuity.
+                - Adjusted RUN command for Docker in README
+                - Changed the top navbar to be reactive to the docker section in use (Volumes, Containers, Config etc). Its also now highlights the current page
+                - Added a sidebar menu to better navigate the different sections.
+                - Added bootstrap and other related js and css files instead of using a CDN. Some systems might have closed systems.
+                - Added a Help page
+                - Reordered the directory setup and added the modules for config, images, volumes,swarm, network, system and overview. Templates were also 
+                  restructured.
+    
+                ## Issues
+                - The container for the prettified inspect data is now too large for the screen with sidebar. The current fix is to have a new menu bar for the  
+                  Inspect page. Would like to revert to the sidebar to maintain design consistency.
+    
+                ## [Next Release]
+                - Add warnings for removing containers that have autoremove enabled or do not have mounted volumes
+    
+                ## [0.2.0] - 2020-09-10
+    
+                ## [Unreleased]
+    
+                - container CPU usage and performance metrics and graphs
+                - backwards compatability with older versions of docker
+    
+                ### Added
+    
+                - Removed ability to delete the docker-web UI container that is running this app
+                - Adjusted UI in index to separate the Docker Web UI container from the running containers and add it to the bottom of the index page instead
+                - Changed README.md to include images of the UI
+                - Added a travis CI config file. Not yet configured for CI/CD
+                - Added persistant memory to run command
+                - Fixed inspect button bug on some pages
+                - Fixed stop,pause and remove bug in running_all.html used in the Running page
+    
+                ## [0.1.0] - 2020-06-07
+    
+                ## [Unreleased]
+    
+                - container CPU usage and performance metrics and graphs
+                - backwards compatability with older versions of docker
+    
+                ### Added
+    
+                - Added basic inspect, stop, pause, unpause functionality
+            </span>
+        </p>
+    
+        <p><i>Known Issues</i></p>
+        <p>- The container for the prettified inspect data is now too large for the screen with sidebar. The current fix is to have a new menu bar for the  Inspect page due to the usage of the 'pre' tag. Would like to revert to the sidebar to maintain design consistency. - 23.09.2020</p>
+        <p><strong>Official Docker</strong></p>
+        <p><i></i></p>
+        <p></p>
+        <p><i></i></p>
+        <p></p>
+        <p><i>Docker Run</i></p>
+        <p>For full documentation of Docker and the meanings of the commands you can find the docs here: <a href="https://docs.docker.com/engine/reference/run/">https://docs.docker.com/engine/reference/run/</a></p>
+    </div>
+</div>
+{% endblock %}

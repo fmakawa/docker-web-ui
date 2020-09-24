@@ -5,7 +5,7 @@
     {% if running| length!=0 %}
     <h2 class="text-center" style="padding:10px; text-transform: capitalize">Running</h2>
     <div class="col" style="padding-bottom:20px">
-    <table class="table-striped table-bordered" style="width:95%">
+    <table class="table-striped table-bordered">
         <tr>
             <th style="padding:10px">Name</th><th style="padding:10px">Run Command</th><th style="padding:10px">AutoRemove</th><th style="padding:10px">Up Time</th><th style="padding:10px">Actions</th>
         </tr>
@@ -18,12 +18,12 @@
             <td style="padding:10px">
                 <table>
                     <tr>
-                        <td><a href="/inspect/{{ container['Id'] }}"><button type="button" class="button-full btn btn-primary">Inspect</button></a></td>
-                        <td><a class="show-pause" href=# data-name="{{ container['Name'] }}" data-url="/pause/{{ container['Id'] }}"><button type="button" class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
+                        <td><a href="/containers/inspect/{{ container['Id'] }}"><button type="button" class="button-full btn btn-primary">Inspect</button></a></td>
+                        <td><a class="show-pause" href=# data-name="{{ container['Name'] }}" data-url="/containers/pause/{{ container['Id'] }}"><button type="button" class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
                     </tr>
                     <tr>
-                        <td><a class="show-stop" href=# data-name="{{ container['Name'] }}" data-url="/stop/{{ container['Id'] }}"><button type="button" class="button-full btn btn-warning">Stop</button></a></td>
-                        <td><a class="show-remove" href=# data-name="{{ container['Name'] }}" data-url="/remove/{{ container['Id'] }}"><button type="button" class="button-full btn btn-danger">Remove</button></a></td>
+                        <td><a class="show-stop" href=# data-name="{{ container['Name'] }}" data-url="/containers/stop/{{ container['Id'] }}"><button type="button" class="button-full btn btn-warning">Stop</button></a></td>
+                        <td><a class="show-remove" href=# data-name="{{ container['Name'] }}" data-url="/containers/remove/{{ container['Id'] }}"><button type="button" class="button-full btn btn-danger">Remove</button></a></td>
                     </tr>
                 </table>
             </td>
