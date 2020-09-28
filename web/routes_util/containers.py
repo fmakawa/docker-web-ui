@@ -54,6 +54,7 @@ def container_detail():
             "Auto Remove": config["HostConfig"]["AutoRemove"],
             "Status": status,
             "Id": config["Id"],
+            "Volume": config["HostConfig"]["Binds"],
             "Image": config["Config"]["Image"]
             }
         # print(json)

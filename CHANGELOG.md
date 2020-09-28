@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - [BIG CHANGE] Changed URLS for container related to include 'containers' in the url i.e '/containers/running'. This is to ensure that as we add networks, images etc they follow the same naming convention
 - Fixed known issue regarding hardcoded database path. Changed the database directory mapping to ensure that its not hardcoded and can be easily preserved through mounting volumes for data continuity.
+- Added deletion checks for containers without mounted volumes.
+- Added stop checks for containers with autoremove enabled and those with autoremove and without mounted volumes.
 - Adjusted RUN command for Docker in README
 - Changed the top navbar to be reactive to the docker section in use (Volumes, Containers, Config etc). Its also now highlights the current page
 - Added a sidebar menu to better navigate the different sections.

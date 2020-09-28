@@ -17,7 +17,13 @@
             <tr>
                 <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
                 <td style="padding:10px">{{ container["Command"] }}</td>
-                <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                {% if container["Auto Remove"]==True and container["Volume"]==None %}
+                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
+                  {% elif container["Auto Remove"]==True %}
+                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
+                  {% else %}
+                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                  {% endif %}
                 <td style="padding:10px">{{ container["Status"] }}</td>
                 <td style="padding:10px">
                     <table>
@@ -29,12 +35,28 @@
                                         class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
                         </tr>
                         <tr>
-                            <td><a class="show-stop" href=# data-name="{{ container['Name'] }}"
-                                    data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-warning">Stop</button></a></td>
-                            <td><a class="show-remove" href=# data-name="{{ container['Name'] }}"
+                            <td>{% if container["Auto Remove"]==True and container["Volume"]==None %}
+                                <a class="show-autoremove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% elif container["Auto Remove"]==True %}
+                                <a class="show-autoremove" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% else %}
+                                <a class="show-stop" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% endif %}</td>
+                            <td>{% if container["Volume"]==None %}
+                                <a class="show-remove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-danger">Remove</button></a>
+                                {% else %}
+                                <a class="show-remove" href=# data-name="{{ container['Name'] }}"
                                     data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-danger">Remove</button></a></td>
+                                        class="button-full btn btn-danger">Remove</button></a>
+                                {% endif %}</td>
                         </tr>
                     </table>
                 </td>
@@ -58,7 +80,13 @@
             <tr>
                 <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
                 <td style="padding:10px">{{ container["Command"] }}</td>
-                <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                {% if container["Auto Remove"]==True and container["Volume"]==None %}
+                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
+                  {% elif container["Auto Remove"]==True %}
+                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
+                  {% else %}
+                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                  {% endif %}
                 <td style="padding:10px">{{ container["Status"] }}</td>
                 <td style="padding:10px">
                     <table>
@@ -68,12 +96,28 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td><a class="show-stop" href=# data-name="{{ container['Name'] }}"
-                                    data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-warning">Stop</button></a></td>
-                            <td><a class="show-remove" href=# data-name="{{ container['Name'] }}"
+                            <td>{% if container["Auto Remove"]==True and container["Volume"]==None %}
+                                <a class="show-autoremove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% elif container["Auto Remove"]==True %}
+                                <a class="show-autoremove" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% else %}
+                                <a class="show-stop" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% endif %}</td>
+                            <td>{% if container["Volume"]==None %}
+                                <a class="show-remove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-danger">Remove</button></a>
+                                {% else %}
+                                <a class="show-remove" href=# data-name="{{ container['Name'] }}"
                                     data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-danger">Remove</button></a></td>
+                                        class="button-full btn btn-danger">Remove</button></a>
+                                {% endif %}</td>
                             <td></td>
                         </tr>
                     </table>
@@ -98,19 +142,33 @@
             <tr>
                 <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
                 <td style="padding:10px">{{ container["Command"] }}</td>
-                <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                {% if container["Auto Remove"]==True and container["Volume"]==None %}
+                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
+                  {% elif container["Auto Remove"]==True %}
+                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
+                  {% else %}
+                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                  {% endif %}
                 <td style="padding:10px">{{ container["Status"] }}</td>
                 <td style="padding:10px">
                     <table>
                         <tr>
                             <td><a href="/containers/inspect/{{ container['Id'] }}"><button type="button"
                                         class="button-full btn btn-primary">Inspect</button></a></td>
-                            <td><a class="show-restart" href=# data-name="{{ container['Name'] }}" data-url="/containers/restart/{{ container['Id'] }}"><button type="button" class="button-full btn btn-success">Restart</button></a></td>
+                            <td><a class="show-restart" href=# data-name="{{ container['Name'] }}"
+                                    data-url="/containers/restart/{{ container['Id'] }}"><button type="button"
+                                        class="button-full btn btn-success">Restart</button></a></td>
                         </tr>
                         <tr>
-                            <td><a class="show-remove" href=# data-name="{{ container['Name'] }}"
+                            <td>{% if container["Volume"]==None %}
+                                <a class="show-remove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-danger">Remove</button></a>
+                                {% else %}
+                                <a class="show-remove" href=# data-name="{{ container['Name'] }}"
                                     data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-danger">Remove</button></a></td>
+                                        class="button-full btn btn-danger">Remove</button></a>
+                                {% endif %}</td>
                             <td></td>
                         </tr>
                     </table>
@@ -135,7 +193,13 @@
             <tr>
                 <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
                 <td style="padding:10px">{{ container["Command"] }}</td>
-                <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                {% if container["Auto Remove"]==True and container["Volume"]==None %}
+                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
+                  {% elif container["Auto Remove"]==True %}
+                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
+                  {% else %}
+                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                  {% endif %}
                 <td style="padding:10px">{{ container["Status"] }}</td>
                 <td style="padding:10px">
                     <table>
@@ -147,12 +211,28 @@
                                         class="button-full btn btn-success">Unpause</button></a></td>
                         </tr>
                         <tr>
-                            <td><a class="show-stop" href=# data-name="{{ container['Name'] }}"
-                                    data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-warning">Stop</button></a></td>
-                            <td><a class="show-remove" href=# data-name="{{ container['Name'] }}"
+                            <td>{% if container["Auto Remove"]==True and container["Volume"]==None %}
+                                <a class="show-autoremove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% elif container["Auto Remove"]==True %}
+                                <a class="show-autoremove" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% else %}
+                                <a class="show-stop" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-warning">Stop</button></a>
+                                {% endif %}</td>
+                            <td>{% if container["Volume"]==None %}
+                                <a class="show-remove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-danger">Remove</button></a>
+                                {% else %}
+                                <a class="show-remove" href=# data-name="{{ container['Name'] }}"
                                     data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-danger">Remove</button></a></td>
+                                        class="button-full btn btn-danger">Remove</button></a>
+                                {% endif %}</td>
                         </tr>
                     </table>
                 </td>
@@ -176,14 +256,26 @@
             <tr>
                 <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
                 <td style="padding:10px">{{ container["Command"] }}</td>
-                <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                {% if container["Auto Remove"]==True and container["Volume"]==None %}
+                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
+                  {% elif container["Auto Remove"]==True %}
+                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
+                  {% else %}
+                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                  {% endif %}
                 <td style="padding:10px">{{ container["Status"] }}</td>
                 <td style="padding:10px">
                     <table>
                         <tr>
-                            <td><a class="show-remove" href=# data-name="{{ container['Name'] }}"
+                            <td>{% if container["Volume"]==None %}
+                                <a class="show-remove-volume" href=# data-name="{{ container['Name'] }}"
+                                      data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
+                                          class="button-full btn btn-danger">Remove</button></a>
+                                {% else %}
+                                <a class="show-remove" href=# data-name="{{ container['Name'] }}"
                                     data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                        class="button-full btn btn-danger">Remove</button></a></td>
+                                        class="button-full btn btn-danger">Remove</button></a>
+                                {% endif %}</td>
                             <td><a class="show-restart" href=# data-name="{{ container['Name'] }}"
                                     data-url="/containers/restart/{{ container['Id'] }}"><button type="button"
                                         class="button-full btn btn-success">Restart</button></a></td>
@@ -210,7 +302,13 @@
             <tr>
                 <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
                 <td style="padding:10px">{{ container["Command"] }}</td>
-                <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                {% if container["Auto Remove"]==True and container["Volume"]==None %}
+                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
+                  {% elif container["Auto Remove"]==True %}
+                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
+                  {% else %}
+                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
+                  {% endif %}
                 <td style="padding:10px">{{ container["Status"] }}</td>
                 <td style="padding:10px">
                     <table>
