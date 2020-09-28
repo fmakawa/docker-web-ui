@@ -18,6 +18,4 @@ EXPOSE 5000
 
 RUN chmod +x start_docker.sh
 
-# ENTRYPOINT [ "python" ]
-
 CMD [ "/opt/docker_web/start_docker.sh" ]
