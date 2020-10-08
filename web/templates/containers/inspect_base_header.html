@@ -94,8 +94,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
                                 <a class="dropdown-item disable inactive" href="#">Overview</a>
-                                <!--a class="dropdown-item" href="#">System</a-->
-                                <a class="dropdown-item" href="#">Containers</a>
+                                <a class="dropdown-item" href="/system">System</a>
+                                <a class="dropdown-item" href="/containers/all">Containers</a>
                                 <!--a class="dropdown-item" href="#">Network</a-->
                                 <!--a class="dropdown-item" href="#">Volumes</a-->
                                 <!--a class="dropdown-item" href="#">Swarm</a-->
@@ -120,8 +120,8 @@
             <!-- Secondary Inspect Menu starts-->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-inspect-menu" style="width: 100%;">
                 <!-- button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsInspect" aria-controls="navbarsInspect" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button -->
+                <span class="navbar-toggler-icon"></span>
+                </button -->
 
                 <div class="collapse navbar-collapse" id="navbarsInspect">
                     <ul class="navbar-nav mr-auto">
@@ -134,7 +134,7 @@
                             </a>
                         </li>
                         <li class="nav-item"></li>
-                        <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
+                        <a href="/system" class="bg-dark list-group-item list-group-item-action text-white">
                             <div class="d-flex w-100 justify-content-start align-items-center">
                                 <span class="fa fa-dashboard fa-fw mr-3"></span>
                                 <span class="menu-collapsed ">System</span>
@@ -142,15 +142,15 @@
                         </a>
                         </li>
                         <!-- li class="nav-item">
-          <a class="nav-link disabled inactive" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li -->
+                        <a class="nav-link disabled inactive" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white"
                                 href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false"><span class="fa fa-server fa-fw mr-3"></span>Containers</a>
                             <div class="dropdown-menu bg-dark">
                                 <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
-                                    href="/ontainers/index">All</a>
+                                    href="/containers/all">All</a>
                                 <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
                                     href="/containers/running">Running</a>
                                 <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
