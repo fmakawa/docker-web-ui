@@ -47,3 +47,23 @@ padding-left: 0.5rem
     white-space: pre-wrap;
     border: 1px solid #ccc;
 }
+
+#system-table {
+    width:95%;
+    text-align: left;
+    vertical-align: middle;
+    padding: 5%;
+    border-spacing: 5px;
+}
+
+#row-title {
+    width: 45%;
+}
+
+#row-content {
+    width: 55%;
+}
+
+#system-table #row-title {
+    padding-left:10px;
+}
