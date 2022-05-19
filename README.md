@@ -61,7 +61,6 @@ The docker container is this app is shown at the bottom of the landing page. You
 - re-enable commandline interface for docker run extraction
 - re-add help commands which have been disabled
 - add security and permissions control
-- limit remove permissions and add warnings for containers that have autoremove enabled and/or do not have mounted volumes so all data would be lost.
 - add secure remote docker connections
 - shift to a react front end (last thing likely) 
 - add tests

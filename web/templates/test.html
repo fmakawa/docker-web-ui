@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/static/css/base.css">
   <link rel="stylesheet" href="/static/css/menu_sidebar.css">
   <link rel="stylesheet" href="/static/css/pretty-print-json.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
   <script src="/static/js/pretty-print-json.js"></script>
   <!-- JS, Popper.js, and jQuery -->
   <script src="/static/js/jquery-3.5.1.min.js"></script>
@@ -60,6 +60,18 @@
       <ul class="navbar-nav mr-auto">
         {% if section=='overview' %}
         {% elif section=='system'%}
+        <li class="nav-item">
+          <a class="nav-link" href="/system/overview">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/system/info">Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/system/df">df</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/system/stats">Stats</a>
+        </li>
         {% elif section=='containers'%}
         <li class="nav-item">
           <a class="nav-link" href="/containers/all">All</a>
@@ -121,108 +133,111 @@
     <div class="collapse navbar-collapse" id="navbarsInspect">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link disabled inactive" href="#">Overview</a>
+          <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa- fa-fw mr-3"></span>
+              <span class="menu-collapsed ">Overview</span>
+            </div>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disable inactive" href="#">System</a>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-dashboard fa-fw mr-3"></span>System</a>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/system/overview">System Overview</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/system/info">Docker Info</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/system/df">Docker df</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/system/stats">Docker Stats</a>
+          </div>
         </li>
         <!-- li class="nav-item">
-          <a class="nav-link disabled inactive" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li -->
+<a class="nav-link disabled inactive" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</li -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"><span class="fa fa-server fa-fw mr-3"></span>Containers</a>
+          <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-server fa-fw mr-3"></span>Containers</a>
           <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
-              action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
-              here</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/containers/all">All</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/containers/running">Running</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/containers/stopped">Stopped</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/containers/paused">Paused</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+              href="/containers/removed">Removed</a>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" tabindex="-1"
-            aria-disabled="true">Network</a>
+          <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white disable inactive"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-signal fa-fw mr-3"></span>Network</a>
           <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
-              action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
-              here</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Network 1</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Network 2 </a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Network 3</a>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Volumes</a>
+          <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white disabled inactive"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-database fa-fw mr-3"></span>Volumes</a>
           <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
-              action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
-              here</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Volumes 1</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Volumes 2</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Volumes 3</a>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Swarm</a>
+          <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white disabled inactive"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-users fa-fw mr-3"></span>Swarm</a>
           <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
-              action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
-              here</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Swarm 1</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Swarm 2</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Swarm 3</a>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Images</a>
+          <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white disabled inactive"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-download fa-fw mr-3"></span>Images</a>
           <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
-              action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
-              here</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Images 1</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Images 2</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Images 3</a>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle disabled inactive" href="#" id="dropdown_inspect" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Config</a>
+          <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white disabled inactive"
+            href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+              class="fa fa-cog fa-fw mr-3"></span>Config</a>
           <div class="dropdown-menu bg-dark">
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Another
-              action</a>
-            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Something else
-              here</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Config 1</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Config 2</a>
+            <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white" href="#">Config 3</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled inactive" href="#">Help</a>
+          <a href="/help" class="bg-dark list-group-item list-group-item-action text-white">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-question fa-fw mr-3"></span>
+              <span class="menu-collapsed ">Help</span>
+            </div>
+          </a>
         </li>
-        <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
-          class="bg-dark list-group-item list-group-item-action flex-column align-items-start text-white">
-          <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-users fa-fw mr-3"></span>
-            <span class="menu-collapsed ">Swarm</span>
-            <span class="submenu-icon ml-auto"></span>
-          </div>
-        </a>
-        <!-- Submenu content -->
-        <div id="submenu4" class="collapse sidebar-submenu">
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="menu-collapsed ">Placeholder 1</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="menu-collapsed ">Placeholder 2</span>
-          </a>
-        </div>
-      </ul>
-      <form class="form-inline my-2 my-md-0">
-        <input class="form-control" type="text" placeholder="Search">
-      </form>
+    </div>
+    </ul>
     </div>
   </nav>
   <!-- Inspect Menu ends-->
-
 
   <!-- Bootstrap row -->
   <div class="row" id="body-row">
@@ -242,12 +257,31 @@
             <span class="menu-collapsed ">Overview</span>
           </div>
         </a>
-        <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
+        <!-- Menu with submenu -->
+        <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+          class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-start align-items-center">
             <span class="fa fa-dashboard fa-fw mr-3"></span>
-            <span class="menu-collapsed ">System</span>
+            <span class="menu-collapsed">System</span>
+            <span class="submenu-icon ml-auto"></span>
           </div>
         </a>
+        <!-- Submenu content -->
+        <div id="submenu1" class="collapse sidebar-submenu">
+          <a href="/system/overview" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Overview</span>
+          </a>
+          <a href="/system/info" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Info</span>
+          </a>
+          <a href="/system/stats" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">DF</span>
+          </a>
+          <a href="/system/stats" class="list-group-item list-group-item-action bg-dark text-white">
+            <span class="menu-collapsed">Stats</span>
+          </a>
+        </div>
+        
         <!-- Menu with submenu -->
         <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
           class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
@@ -404,71 +438,296 @@
 
     <!-- MAIN -->
     <div class="col py-3">
-      {% if running| length!=0 %}
-      <h2 class="text-center" style="padding:10px; text-transform: capitalize">Running</h2>
-      <div class="table-responsive" style="padding-bottom:20px">
-          <table class="table table-striped table-bordered table-sm">
+
+      <!-- System Data -->
+      <div class="row">
+        <div class="col-sm-4" style="background-color: white;">
+          <h2>Host System Data</h2>
+          <table id="system-table">
+            <thead>
               <tr>
-                  <th style="padding:10px">Name</th>
-                  <th style="padding:10px">Run Command</th>
-                  <th style="padding:10px">AutoRemove</th>
-                  <th style="padding:10px">Up Time</th>
-                  <th style="padding:10px">Actions</th>
+                <th scope="col">Basic</th>
               </tr>
-              {% for container in running %}
+            </thead>
+            <tbody style="border-left: 10px solid white;">
               <tr>
-                  <td style="padding:10px; min-width:20rem">{{ container["Name"] }}</td>
-                  <td style="padding:10px">{{ container["Command"] }}</td>
-                  {% if container["Auto Remove"]==True and container["Volume"]==None %}
-                  <td style="padding:10px; background-color:#ffca57;">{{ container["Auto Remove"] }}<br> (Unmounted)</td>
-                  {% elif container["Auto Remove"]==True %}
-                  <td style="padding:10px; background-color:rgb(252, 255, 85);">{{ container["Auto Remove"] }}<br> (Mounted)</td>
-                  {% else %}
-                  <td style="padding:10px">{{ container["Auto Remove"] }}</td>
-                  {% endif %}
-                  <td style="padding:10px">{{ container["Status"] }}</td>
-                  <td style="padding:10px">
-                      <table>
-                          <tr>
-                              <td><a href="/containers/inspect/{{ container['Id'] }}"><button type="button"
-                                          class="button-full btn btn-primary">Inspect</button></a></td>
-                              <td><a class="show-pause" href=# data-name="{{ container['Name'] }}"
-                                      data-url="/containers/pause/{{ container['Id'] }}"><button type="button"
-                                          class="button-full btn btn-info" onclick="myPauseFunc()">Pause</button></a></td>
-                          </tr>
-                          <tr>
-                              <td>
-                                {% if container["Auto Remove"]==True and container["Volume"]==None %}
-                                <a class="show-autoremove-volume" href=# data-name="{{ container['Name'] }}"
-                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
-                                          class="button-full btn btn-warning">Stop</button></a>
-                                {% elif container["Auto Remove"]==True %}
-                                <a class="show-autoremove" href=# data-name="{{ container['Name'] }}"
-                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
-                                          class="button-full btn btn-warning">Stop</button></a>
-                                {% else %}
-                                <a class="show-stop" href=# data-name="{{ container['Name'] }}"
-                                      data-url="/containers/stop/{{ container['Id'] }}"><button type="button"
-                                          class="button-full btn btn-warning">Stop</button></a>
-                                {% endif %}
-                              </td>
-                              <td>{% if container["Volume"]==None %}
-                                  <a class="show-remove-volume" href=# data-name="{{ container['Name'] }}"
-                                        data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                            class="button-full btn btn-danger">Remove</button></a>
-                                  {% else %}
-                                  <a class="show-remove" href=# data-name="{{ container['Name'] }}"
-                                      data-url="/containers/remove/{{ container['Id'] }}"><button type="button"
-                                          class="button-full btn btn-danger">Remove</button></a>
-                                  {% endif %}</td>
-                          </tr>
-                      </table>
-                  </td>
+                <td id="row-title">Platform</td>
+                <td id="row-content">{{ system['platform'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Platform Release</td>
+                <td id="row-content">{{ system['platform-release'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Platform Version</td>
+                <td id="row-content">{{ system['platform-version'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Architecture</td>
+                <td id="row-content">{{ system['architecture'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Hostname</td>
+                <td id="row-content">{{ system['hostname'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">IP Address</td>
+                <td id="row-content">{{ system['ip-address'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Mac Address</td>
+                <td id="row-content">{{ system['mac-address'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Processor</td>
+                <td id="row-content">{{ system['processor'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">RAM</td>
+                <td id="row-content">{{ system['ram'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Boot Time</td>
+                <td id="row-content">{{ system['boot-time'] }}</td>
+              </tr> 
+              <!--<tr>
+                <td id="row-title"></td>
+                <td id="row-content">{\{  }}</td>
+              </tr> -->
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="col">CPU</th>
+              </tr>
+            </thead>
+            <tbody style="border-left: 10px solid rgb(7, 93, 150, 1); background-color: rgba(7, 93, 150, 0.200);">
+              <tr>
+                <td id="row-title">Physical Cores</td>
+                <td id="row-content">{{ system['cpu']['physical_cores'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Total Cores</td>
+                <td id="row-content">{{ system['cpu']['total_cores'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Max Frequency</td>
+                <td id="row-content">{{ system['cpu']['max _frequency'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Min Frequency</td>
+                <td id="row-content">{{ system['cpu']['min_frequency'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Current Frequency</td>
+                <td id="row-content">{{ system['cpu']['current_frequency'] }}</td>
+              </tr>
+              {% for i in system['cpu']['cores'] %}
+              <tr>
+                <td id="row-title" style="text-transform: capitalize;">{{ i }}</td>
+                <td id="row-content">{{ system['cpu']['cores'][i] }}%</td>
               </tr>
               {% endfor %}
+              <tr>
+                <td id="row-title">Total CPU Usage</td>
+                <td id="row-content">{{ system['cpu']['totalcpu_usage'] }}</td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="col">Memory</th>
+              </tr>
+            </thead>
+            <tbody style="border-left: 10px solid rgb(40, 150, 7); background-color: rgba(40, 150, 7, 0.200)">
+              <tr>
+                <td id="row-title">Total</td>
+                <td id="row-content">{{ system['memory']['total'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Available</td>
+                <td id="row-content">{{ system['memory']['available'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Used</td>
+                <td id="row-content">{{ system['memory']['used'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Percentage Used</td>
+                <td id="row-content">{{ system['memory']['percentage'] }}%</td>
+              </tr>
+              <tr>
+                <td id="row-title">Swap Total</td>
+                <td id="row-content">{{ system['memory']['swap_total'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Swap Free</td>
+                <td id="row-content">{{ system['memory']['swap_free'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Swap Used</td>
+                <td id="row-content">{{ system['memory']['swap_used'] }}</td>
+              </tr>
+              <tr>
+                <td id="row-title">Swap Percentage Used</td>
+                <td id="row-content">{{ system['memory']['swap_percentage'] }}%</td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="col">Network Information</th>
+              </tr>
+            </thead>
+            <tbody style="border-left: 10px solid rgb(150, 140, 7); background-color: rgba(150, 140, 7, 0.200)">
+              <tr>
+                <td style="text-align: left;"><b>Networks</b></td>
+                <td></td>
+              </tr>
+              {% for i in system['network']['interfaces'] %}
+              <tr>
+                <td id="row-title">Name</td>
+                <td id="row-content">{{ i['name'] }}</td>
+              </tr>
+              {% if i['ip_address']%}
+              <tr>
+                <td id="row-title">IP Address</td>
+                <td id="row-content">{{ i['ip_address'] }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td id="row-title">Mac Address</td>
+                <td id="row-content">{{ i['mac_address'] }}</td>
+              </tr>
+              {% endif %}
+              <tr>
+                <td id="row-title">Netmask</td>
+                <td id="row-content">{{ i['netmask'] }}</td>
+              </tr>
+              {% if i['broadcast_ip'] %}
+              <tr style="border-bottom: 2px solid grey;">
+                <td id="row-title">Broadcast IP</td>
+                <td id="row-content">{{ i['broadcast_ip'] }}</td>
+              </tr>
+              {% elif i['broadcast_mac'] %}
+              <tr style="border-bottom: 2px solid grey;">
+                <td id="row-title">Broadcast MAC</td>
+                <td id="row-content">{{ i['broadcast_mac'] }}</td>
+              </tr>
+              {% else %}
+              <tr style="border-bottom: 2px solid grey;">
+                <td></td><td></td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+              </tbody>
+              <thead>
+                <tr>
+                  <th scope="col">GPU </th>
+                </tr>
+              </thead>
+              <tbody style="border-left: 10px solid rgb(224, 43, 185); background-color: rgba(224, 43, 185, 0.200)">
+                {% if system['gpus'] %}
+                <tr>
+                  <td style="text-align: left;"><b>GPUs</b></td>
+                  <td></td>
+                </tr>
+                {% for i in system['gpus'] %}
+                <tr>
+                  <td id="row-title">ID</td>
+                  <td id="row-content">{{ i['id'] }}</td>
+                </tr>
+                <tr>
+                  <td id="row-title">Name</td>
+                  <td id="row-content">{{ i['name'] }}</td>
+                </tr>
+                <tr>
+                  <td id="row-title">Load</td>
+                  <td id="row-content">{{ i['load'] }}</td>
+                </tr>
+                <tr>
+                  <td id="row-title">Used Memory</td>
+                  <td id="row-content">{{ i['used_memory'] }}</td>
+                </tr>
+                <tr>
+                  <td id="row-title">Total Memory</td>
+                  <td id="row-content">{{ i['total_memory'] }}</td>
+                </tr>
+                <tr>
+                  <td id="row-title">Temperature</td>
+                  <td id="row-content">{{ i['temperature'] }}</td>
+                </tr>
+                <tr>
+                  <td id="row-title">Name</td>
+                  <td id="row-content">{{ UUID }}</td>
+                </tr>
+                <tr style="border-bottom: 2px solid grey;">
+                  <td id="row-title">UUID</td>
+                  <td id="row-content">{{ i['uuid'] }}%</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                  <td id="row-title" colspan="2">There are no GPUs on this system</td>
+                </tr>
+                {% endif %}
+                </tbody>
+                <thead>
+                  <tr>
+                    <th scope="col">Disk Usage</th>
+                  </tr>
+                </thead>
+                <tbody style="border-left: 10px solid white;">
+                  <tr>
+                    <td style="text-align: left;"><b>Partitions</b></td>
+                    <td></td>
+                  </tr>
+                  {% for i in system['disk_usage']['partitions'] %}
+                  <tr>
+                    <td id="row-title">Device</td>
+                    <td id="row-content">{{ i['device']}}</td>
+                  </tr>
+                  <tr>
+                    <td id="row-title">Mount Point</td>
+                    <td id="row-content">{{ i['mountpoint'] }}</td>
+                  </tr>
+                  <tr>
+                    <td id="row-title">File System Type</td>
+                    <td id="row-content">{{ i['file_system_type'] }}</td>
+                  </tr>
+                  <tr>
+                    <td id="row-title">Total Size</td>
+                    <td id="row-content">{{ i['total_size'] }}</td>
+                  </tr>
+                  <tr>
+                    <td id="row-title">Partition Used</td>
+                    <td id="row-content">{{ i['partition_used'] }}</td>
+                  </tr>
+                  <tr>
+                    <td id="row-title">Free</td>
+                    <td id="row-content">{{ i['free'] }}</td>
+                  </tr>
+                  <tr style="border-bottom: 2px solid grey;">
+                    <td id="row-title">Percentage Used</td>
+                    <td id="row-content">{{ i['percentage'] }}%</td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+                    <td id="row-title">Total Read</td>
+                    <td id="row-content">{{ system['disk_usage']['total_read'] }}</td>
+                  </tr>
+                  <tr>
+                    <td id="row-title">Total Write</td>
+                    <td id="row-content">{{ system['disk_usage']['total_write'] }}</td>
+                  </tr>
+                </tbody>
           </table>
+        </div>
+        <div class="col-sm-8" style="background-color:pink;">
+          <h2>Docker System Data</h2>
+          <p>{{ usage_user_mode }}
+            {{ core_cpu_usage }}
+          </p>
+        </div>
       </div>
-      {% endif %}
+      <!-- System Data END -->
     </div>
     <!-- Main Col END -->
 

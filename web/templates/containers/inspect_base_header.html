@@ -62,6 +62,18 @@
                     <ul class="navbar-nav mr-auto">
                         {% if section=='overview' %}
                         {% elif section=='system'%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/system/overview">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/system/info">Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/system/df">DF</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/system/stats">Stats</a>
+                        </li>
                         {% elif section=='containers'%}
                         <li class="nav-item">
                             <a class="nav-link" href="/containers/all">All</a>
@@ -133,13 +145,20 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item"></li>
-                        <a href="/system" class="bg-dark list-group-item list-group-item-action text-white">
-                            <div class="d-flex w-100 justify-content-start align-items-center">
-                                <span class="fa fa-dashboard fa-fw mr-3"></span>
-                                <span class="menu-collapsed ">System</span>
+                        <li class="nav-item dropdown"></li>
+                            <a class="nav-link dropdown-toggle bg-dark list-group-item list-group-item-action flex-column align-items-start text-white"
+                                href="#" id="dropdown_inspect" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><span class="fa fa-dashboard fa-fw mr-3"></span>System</a>
+                            <div class="dropdown-menu bg-dark">
+                                <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+                                    href="/system/overview">Overview</a>
+                                <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+                                    href="/system/info">Info</a>
+                                <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+                                    href="/system/df">DF</a>
+                                <a class="dropdown-item list-group-item list-group-item-action bg-dark text-white"
+                                    href="/system/stats">Stats</a>
                             </div>
-                        </a>
                         </li>
                         <!-- li class="nav-item">
                         <a class="nav-link disabled inactive" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

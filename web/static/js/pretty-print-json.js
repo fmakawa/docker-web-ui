@@ -1,4 +1,5 @@
 // pretty-print-json ~ MIT License
+/*jshint esversion: 6 */
 
 const prettyPrintJson = {
 

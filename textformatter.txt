@@ -1,0 +1,55 @@
+## System CPU
+Physical Cores	2
+Total Cores	2
+Max Frequency	2582.3
+Min Frequency	499.8
+Current Frequency	2583.3424999999997
+Core 0	49.5%
+Core 1	46.0%
+
+## Docker Stats of a container
+"docker-web": {
+    "read": "0001-01-01T00:00:00Z",
+    "preread": "0001-01-01T00:00:00Z",
+    "pids_stats": {},
+    "blkio_stats": {
+      "io_service_bytes_recursive": null,
+      "io_serviced_recursive": null,
+      "io_queue_recursive": null,
+      "io_service_time_recursive": null,
+      "io_wait_time_recursive": null,
+      "io_merged_recursive": null,
+      "io_time_recursive": null,
+      "sectors_recursive": null
+    },
+    "num_procs": 0,
+    "storage_stats": {},
+    "cpu_stats": {
+      "cpu_usage": {
+        "total_usage": 0,
+        "usage_in_kernelmode": 0,
+        "usage_in_usermode": 0
+      },
+      "throttling_data": {
+        "periods": 0,
+        "throttled_periods": 0,
+        "throttled_time": 0
+      }
+    },
+    "precpu_stats": {
+      "cpu_usage": {
+        "total_usage": 0,
+        "usage_in_kernelmode": 0,
+        "usage_in_usermode": 0
+      },
+      "throttling_data": {
+        "periods": 0,
+        "throttled_periods": 0,
+        "throttled_time": 0
+      }
+    },
+    "memory_stats": {},
+    "name": "/docker-web",
+    "id": "fac46231fddcfa2b1cd1033dd6afe3f8f344bff410f3cc402ade5aafcaa554e1"
+
+    ## Docker

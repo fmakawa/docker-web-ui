@@ -1,0 +1,11 @@
+{% extends "containers/inspect_base_header.html" %}
+
+{% block content %}
+<div>
+    <h2 class="text-center" style="padding:10px; text-transform: capitalize">Docker Info</h2>
+    <div class="col" style="padding-bottom:20px; margin: 0px 20px 0px 20px;">
+        <pre id ="container-inspect">{{ info }}</pre>
+    </div>
+    <script src="/static/js/prettifyjson.js"></script>
+</div>
+{% endblock %}

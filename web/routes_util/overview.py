@@ -3,8 +3,8 @@ import sqlite3
 import docker
 import datetime
 from flask import render_template, Flask,request
-from web.models.models import Drolex
 from sqlite3 import Error
+from web.models.models import Drolex
 from web.database import workdir
 from web import app
 from web.routes_util.containers import docker_client, container_detail, removed_containers
@@ -37,5 +37,5 @@ def overview():
         states=params[5],
         dockerweb = params[6],
         removed_containers=removed_containers,
-        section='containers'
+        section='null'
     )

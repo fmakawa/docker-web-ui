@@ -40,5 +40,5 @@ def test():
         states=params[5],
         dockerweb = params[6],
         removed_containers=removed_containers,
-        section='containers'
+        section='null'
     )

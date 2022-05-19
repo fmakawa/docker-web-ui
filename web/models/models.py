@@ -189,10 +189,10 @@ class Drolex:
                 self.log.debug("No processor found for config key: {0}".format(key))
             except Exception as e:
                 self.log.exception(e)
-        print(self.to_docker_run(out_cmd, order.split(",")))
+        # print(self.to_docker_run(out_cmd, order.split(",")))
         if out_cmd["ExtraNetworks"]:
-            print(self.to_docker_network_connect(out_cmd["ExtraNetworks"],
-                                                 configdata["Name"].replace("/", "")))
+            # print(self.to_docker_network_connect(out_cmd["ExtraNetworks"],
+                                                 # configdata["Name"].replace("/", "")))
             return(self.to_docker_network_connect(out_cmd["ExtraNetworks"],
                                                   configdata["Name"].replace("/", "")))
         else:

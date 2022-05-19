@@ -17,14 +17,32 @@
           <span class="menu-collapsed ">Overview</span>
         </div>
       </a>
-      <a href="#" class="bg-dark list-group-item list-group-item-action disabled inactive">
-        <div class="d-flex w-100 justify-content-start align-items-center">
-          <span class="fa fa-dashboard fa-fw mr-3"></span>
-          <span class="menu-collapsed ">System</span>
-        </div>
-      </a>
       <!-- Menu with submenu -->
       <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="fa fa-dashboard fa-fw mr-3"></span>
+          <span class="menu-collapsed">System</span>
+          <span class="submenu-icon ml-auto"></span>
+        </div>
+      </a>
+      <!-- Submenu content -->
+      <div id="submenu1" class="collapse sidebar-submenu">
+        <a href="/system/overview" class="list-group-item list-group-item-action bg-dark text-white">
+          <span class="menu-collapsed">Overview</span>
+        </a>
+        <a href="/system/info" class="list-group-item list-group-item-action bg-dark text-white">
+          <span class="menu-collapsed">Info</span>
+        </a>
+        <a href="/system/df" class="list-group-item list-group-item-action bg-dark text-white">
+          <span class="menu-collapsed">DF</span>
+        </a>
+        <a href="/system/stats" class="list-group-item list-group-item-action bg-dark text-white">
+          <span class="menu-collapsed">Stats</span>
+        </a>
+      </div>
+      <!-- Menu with submenu -->
+      <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
         class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-start align-items-center">
           <span class="fa fa-server fa-fw mr-3"></span>
@@ -33,7 +51,7 @@
         </div>
       </a>
       <!-- Submenu content -->
-      <div id="submenu1" class="collapse sidebar-submenu">
+      <div id="submenu2" class="collapse sidebar-submenu">
         <a href="/containers/all" class="list-group-item list-group-item-action bg-dark text-white">
           <span class="menu-collapsed">All</span>
         </a>
@@ -51,30 +69,11 @@
         </a>
       </div>
       <!-- Menu with submenu -->
-      <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+      <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
         class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
         <div class="d-flex w-100 justify-content-start align-items-center">
           <span class="fa fa-signal fa-fw mr-3"></span>
           <span class="menu-collapsed ">Network</span>
-          <span class="submenu-icon ml-auto"></span>
-        </div>
-      </a>
-      <!-- Submenu content -->
-      <div id="submenu2" class="collapse sidebar-submenu">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-          <span class="menu-collapsed ">Placeholder 1</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-          <span class="menu-collapsed ">Placeholder 2</span>
-        </a>
-      </div>
-
-      <!-- Menu with submenu -->
-      <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
-        class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
-        <div class="d-flex w-100 justify-content-start align-items-center">
-          <span class="fa fa-database fa-fw mr-3"></span>
-          <span class="menu-collapsed ">Volumes</span>
           <span class="submenu-icon ml-auto"></span>
         </div>
       </a>
@@ -87,12 +86,13 @@
           <span class="menu-collapsed ">Placeholder 2</span>
         </a>
       </div>
+
       <!-- Menu with submenu -->
       <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
         class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
         <div class="d-flex w-100 justify-content-start align-items-center">
-          <span class="fa fa-users fa-fw mr-3"></span>
-          <span class="menu-collapsed ">Swarm</span>
+          <span class="fa fa-database fa-fw mr-3"></span>
+          <span class="menu-collapsed ">Volumes</span>
           <span class="submenu-icon ml-auto"></span>
         </div>
       </a>
@@ -109,8 +109,8 @@
       <a href="#submenu5" data-toggle="collapse" aria-expanded="false"
         class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
         <div class="d-flex w-100 justify-content-start align-items-center">
-          <span class="fa fa-download fa-fw mr-3"></span>
-          <span class="menu-collapsed ">Images</span>
+          <span class="fa fa-users fa-fw mr-3"></span>
+          <span class="menu-collapsed ">Swarm</span>
           <span class="submenu-icon ml-auto"></span>
         </div>
       </a>
@@ -127,13 +127,31 @@
       <a href="#submenu6" data-toggle="collapse" aria-expanded="false"
         class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
         <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="fa fa-download fa-fw mr-3"></span>
+          <span class="menu-collapsed ">Images</span>
+          <span class="submenu-icon ml-auto"></span>
+        </div>
+      </a>
+      <!-- Submenu content -->
+      <div id="submenu6" class="collapse sidebar-submenu">
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+          <span class="menu-collapsed ">Placeholder 1</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+          <span class="menu-collapsed ">Placeholder 2</span>
+        </a>
+      </div>
+      <!-- Menu with submenu -->
+      <a href="#submenu7" data-toggle="collapse" aria-expanded="false"
+        class="bg-dark list-group-item list-group-item-action flex-column align-items-start disabled inactive">
+        <div class="d-flex w-100 justify-content-start align-items-center">
           <span class="fa fa-cog fa-fw mr-3"></span>
           <span class="menu-collapsed ">Config</span>
           <span class="submenu-icon ml-auto"></span>
         </div>
       </a>
       <!-- Submenu content -->
-      <div id="submenu6" class="collapse sidebar-submenu">
+      <div id="submenu7" class="collapse sidebar-submenu">
         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
           <span class="menu-collapsed ">Placeholder 1</span>
         </a>

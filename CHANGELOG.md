@@ -2,9 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2020-10-12
+
+### [Unreleased]
+- backwards compatability with older versions of docker
+
+### Added
+- container CPU usage and performance metrics and graphs
+- removed CDN dependency for font-awesome. Added files to repo. 
+
 ## [0.3.0] - 2020-09-28
 
-## [Unreleased]
+### [Unreleased]
 
 - container CPU usage and performance metrics and graphs
 - backwards compatability with older versions of docker
@@ -21,15 +30,15 @@ All notable changes to this project will be documented in this file.
 - Added a Help page
 - Reordered the directory setup and added the modules for config, images, volumes,swarm, network, system and overview. Templates were also restructured.
 
-## Issues
+### Issues
 - The container for the prettified inspect data is now too large for the screen with sidebar. The current fix is to have a new menu bar for the  Inspect page. Would like to revert to the sidebar to maintain design consistency.
 
-## [Next Release]
+### [Next Release]
 - Add warnings for removing containers that have autoremove enabled or do not have mounted volumes
 
 ## [0.2.0] - 2020-09-10
 
-## [Unreleased]
+### [Unreleased]
 
 - container CPU usage and performance metrics and graphs
 - backwards compatability with older versions of docker
@@ -46,7 +55,7 @@ All notable changes to this project will be documented in this file.
 
 ## [0.1.0] - 2020-06-07
 
-## [Unreleased]
+### [Unreleased]
 
 - container CPU usage and performance metrics and graphs
 - backwards compatability with older versions of docker

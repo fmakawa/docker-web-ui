@@ -16,6 +16,18 @@
       <ul class="navbar-nav mr-auto">
         {% if section=='overview' %}
         {% elif section=='system'%}
+        <li class="nav-item">
+          <a class="nav-link" href="/system/overview">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/system/info">Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/system/df">df</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/system/stats">Stats</a>
+        </li>
         {% elif section=='containers'%}
         <li class="nav-item">
           <a class="nav-link" href="/containers/all">All</a>
@@ -48,8 +60,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
             <a class="dropdown-item" href="#">Overview</a>
-            <!--a class="dropdown-item" href="#">System</a-->
-            <a class="dropdown-item" href="#">Containers</a>
+            <a class="dropdown-item" href="/system">System</a>
+            <a class="dropdown-item" href="/containers/all">Containers</a>
             <!--a class="dropdown-item" href="#">Network</a-->
             <!--a class="dropdown-item" href="#">Volumes</a-->
             <!--a class="dropdown-item" href="#">Swarm</a-->
